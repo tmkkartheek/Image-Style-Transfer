@@ -1,0 +1,180 @@
+/* Center the app content */
+.App {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #f8f9fa, #e0e0e0);
+  background-image: url('https://www.sliderrevolution.com/wp-content/uploads/2022/01/creative-hero.gif');
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Header styles */
+h1 {
+  font-size: 3rem;
+  color: #7cc3ca;
+  font-style: italic;
+  font-family:cursive ;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Quote styling */
+.quote {
+  font-size: 1.2rem;
+  color: #4a4cb8;
+  margin-bottom: 20px;
+  font-style: italic;
+  font-weight: 300;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* Upload buttons */
+.file-input {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 15px;
+  border: 2px solid transparent;
+  border-radius: 50px;
+  background-color: #fff;
+  color: #6c757d;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.file-input:hover {
+  background-color: #3a3b3c;
+  color: #fff;
+  border-color: #3a3b3c;
+}
+
+/* 3D Button Effects */
+.submit-button, .download-button {
+  background-color: #5c5fba;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  margin-top: 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+.submit-button:hover, .download-button:hover {
+  background-color: #4a4cb8;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.download-button {
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+}
+
+.download-button:hover {
+  transform: translateY(-3px) scale(1.05);
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #4a4cb8;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-top: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Completion message */
+.completion-message {
+  font-size: 1.2rem;
+  color: #5ec5d7;
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+/* Stylized image */
+.stylized-image {
+  margin-top: 30px;
+  border-radius: 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  width: 400px;
+  transition: transform 0.2s ease;
+}
+
+.stylized-image:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .file-input, .submit-button, .download-button {
+    width: 100%;
+  }
+
+  .stylized-image {
+    width: 90%;
+  }
+}
+
+/* Loading message styling */
+.loading-message {
+  font-size: 1.1rem;
+  color: #55b8b7;
+  margin-top: 15px;
+  font-style: italic;
+  font-weight: 400;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Party Poppers Animation */
+.party-popper {
+  position: relative;
+  width: 100px; /* Adjust size as needed */
+  height: 100px; /* Adjust size as needed */
+  opacity: 0;
+  animation: pop 1s forwards;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+/* Adjust styles for the party poppers container */
+#party-poppers-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
