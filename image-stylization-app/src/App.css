@@ -2,8 +2,9 @@
 .App {
   text-align: center;
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to right, #f8f9fa, #e0e0e0);
-  background-image: url('https://www.sliderrevolution.com/wp-content/uploads/2022/01/creative-hero.gif');
+  background: linear-gradient(to right, #bee9f3, #7ee0e9);
+  background-image: url("https://static.vecteezy.com/system/resources/previews/021/599/588/non_2x/abstract-white-and-gray-overlap-circles-background-3d-paper-circle-banner-with-drop-shadows-minimal-simple-design-for-presentation-flyer-brochure-website-book-etc-vector.jpg"); 
+  /* background-position:0rex;  */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -15,7 +16,7 @@
 /* Header styles */
 h1 {
   font-size: 3rem;
-  color: #7cc3ca;
+  color: #04474e;
   font-style: italic;
   font-family:cursive ;
   margin-bottom: 10px;

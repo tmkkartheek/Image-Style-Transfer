@@ -6,11 +6,26 @@ function App() {
   const [contentImage, setContentImage] = useState(null);
   const [styleImage, setStyleImage] = useState(null);
   const [stylizedImage, setStylizedImage] = useState(null);
-  const [loading, setLoading] = useState(false); // Add loading state
-  const [showPoppers, setShowPoppers] = useState(false); // State to control poppers visibility
+  const [loading, setLoading] = useState(false);
+  const [showPoppers, setShowPoppers] = useState(false);
 
-  const handleUpload = (event, setImage) => {
-    setImage(event.target.files[0]);
+  const [contentPreview, setContentPreview] = useState(null);
+  const [stylePreview, setStylePreview] = useState(null);
+  const [warning, setWarning] = useState("");
+
+  const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+
+  const handleUpload = (event, setImage, setPreview) => {
+    const file = event.target.files[0];
+
+    // Check if the file type is allowed
+    if (file && allowedTypes.includes(file.type)) {
+      setImage(file);
+      setPreview(URL.createObjectURL(file));
+      setWarning(""); // Clear any previous warnings
+    } else {
+      setWarning("Only .jpg, .jpeg, and .png files are allowed.");
+    }
   };
 
   const handleSubmit = async () => {
@@ -18,19 +33,20 @@ function App() {
     formData.append('content_image', contentImage);
     formData.append('style_image', styleImage);
 
-    setLoading(true); // Start loading
+    setLoading(true);
 
     try {
       const response = await axios.post('http://localhost:5000/stylize', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setStylizedImage(`data:image/png;base64,${response.data.stylized_image}`);
-      setShowPoppers(true); // Show poppers after stylizing
-      playSound(); // Play sound effect
+
+      setShowPoppers(true);
+      playSound();
     } catch (error) {
       console.error('Error stylizing image', error);
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
     }
   };
 
@@ -50,22 +66,41 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Image Stylization App</h1>
-      <p className="quote">"Creativity is intelligence having fun!"</p> {/* Add quote below title */}
+      <h1>Image Style Transfer</h1>
+      <p className="quote">"Creativity is intelligence having fun!"</p>
 
+      {warning && <p className="warning">{warning}</p>}
+
+      {/* Content Image Upload and Preview */}
       <input
         type="file"
-        onChange={(e) => handleUpload(e, setContentImage)}
+        onChange={(e) => handleUpload(e, setContentImage, setContentPreview)}
         className="file-input"
+        accept=".jpg,.jpeg,.png"
       />
+      {contentPreview && (
+        <div>
+          <h4>Original Image Preview:</h4>
+          <img src={contentPreview} alt="Content Preview" style={{ maxWidth: '300px' }} />
+        </div>
+      )}
+
+      {/* Style Image Upload and Preview */}
       <input
         type="file"
-        onChange={(e) => handleUpload(e, setStyleImage)}
+        onChange={(e) => handleUpload(e, setStyleImage, setStylePreview)}
         className="file-input"
+        accept=".jpg,.jpeg,.png"
       />
+      {stylePreview && (
+        <div>
+          <h4>Style Image Preview:</h4>
+          <img src={stylePreview} alt="Style Preview" style={{ maxWidth: '300px' }} />
+        </div>
+      )}
+
       <button onClick={handleSubmit} className="submit-button">Stylize Image</button>
 
-      {/* Show loading spinner and message */}
       {loading && (
         <>
           <div className="loading-spinner"></div>
@@ -75,14 +110,12 @@ function App() {
         </>
       )}
 
-      {/* Show stylized image and download button when done */}
       {!loading && stylizedImage && (
         <>
           <img src={stylizedImage} alt="Stylized" className="stylized-image" />
           <p className="completion-message">Yay! Your stylized image is ready!</p>
           <button onClick={handleDownload} className="download-button">Download Image</button>
 
-          {/* Party Poppers Animation */}
           {showPoppers && (
             <div id="party-poppers-container">
               {Array.from({ length: 4 }).map((_, index) => (
@@ -92,8 +125,6 @@ function App() {
           )}
         </>
       )}
-      
-      
     </div>
   );
 }
