@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 Flask==2.1.2
 Flask-CORS==3.0.10
 tensorflow==2.8.0
 tensorflow-hub==0.12.0
 numpy==1.21.5
 Pillow==9.0.1
+=======
+Flask==2.1.2
+Flask-CORS==3.0.10
+tensorflow==2.12.0
+tensorflow-hub==0.12.0
+numpy==1.26.0
+Pillow==9.0.1
+>>>>>>> acda991ed0a6e853bcba1c3ab655ecbbb6cd1ce1
